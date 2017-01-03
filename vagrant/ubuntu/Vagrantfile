@@ -1,0 +1,18 @@
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
+VMHOSTNAME="test1"
+VMIP="192.168.10.10"
+
+Vagrant.configure (VAGRANTFILE_API_VERSION) do | config |
+    config.vm.box = "ubuntu/trusty64"
+	config.vm.hostname = VMHOSTNAME
+	# network setting
+    config.vm.network :private_network, ip: VMIP
+
+    config.vm.provider :virtualbox do | vb |
+        vb.name = VMHOSTNAME
+        vb.gui = false
+        vb.cpus = 2
+        vb.memory = 1024
+     end
+end
