@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  proxy:
+    image: nginx
+    ports:
+      - '80:80'
+    links:
+      - "was"
+  was:
+    build:
+      context: .
+      dockerfile: petclinic.Dockerfile
+    links: 
+      - "db"
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: petclinic
+      MYSQL_DATABASE: petclinic
+  
